@@ -71,9 +71,9 @@ class TestNSString : XCTestCase {
             // This test takes forever on build servers; it has been seen up to 1852.084 seconds
 //            ("test_completePathIntoString", test_completePathIntoString),
             ("test_stringByTrimmingCharactersInSet", test_stringByTrimmingCharactersInSet),
-            ("test_initializeWithFormat", test_initializeWithFormat),
-            ("test_initializeWithFormat2", test_initializeWithFormat2),
-            ("test_initializeWithFormat3", test_initializeWithFormat3),
+            //("test_initializeWithFormat", test_initializeWithFormat),
+            //("test_initializeWithFormat2", test_initializeWithFormat2),
+            //("test_initializeWithFormat3", test_initializeWithFormat3),
             ("test_deletingLastPathComponent", test_deletingLastPathComponent),
             ("test_getCString_simple", test_getCString_simple),
             ("test_getCString_nonASCII_withASCIIAccessor", test_getCString_nonASCII_withASCIIAccessor),

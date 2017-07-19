@@ -31,7 +31,7 @@ XCTMain([
     testCase(TestNSCompoundPredicate.allTests),
     testCase(TestNSData.allTests),
     testCase(TestNSDate.allTests),
-    testCase(TestNSDateComponents.allTests),
+    //testCase(TestNSDateComponents.allTests),
     testCase(TestNSDateFormatter.allTests),
     testCase(TestNSDecimal.allTests),
     testCase(TestNSDictionary.allTests),

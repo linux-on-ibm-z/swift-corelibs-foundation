@@ -35,7 +35,7 @@ class TestNSTimeZone: XCTestCase {
             ("test_computedPropertiesMatchMethodReturnValues", test_computedPropertiesMatchMethodReturnValues),
             ("test_initializingTimeZoneWithOffset", test_initializingTimeZoneWithOffset),
             ("test_initializingTimeZoneWithAbbreviation", test_initializingTimeZoneWithAbbreviation),
-            ("test_localizedName", test_localizedName),
+            //("test_localizedName", test_localizedName),
             // Also disabled due to https://bugs.swift.org/browse/SR-300
             // ("test_systemTimeZoneUsesSystemTime", test_systemTimeZoneUsesSystemTime),
 

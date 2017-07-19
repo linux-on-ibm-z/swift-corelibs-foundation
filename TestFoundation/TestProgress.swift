@@ -346,7 +346,8 @@ class TestProgress : XCTestCase {
                      (0, 1, false, 0.0),
                      (1, 1, false, 1.0)]
         
-        for t in tests {
+        for i in 0..<tests.count {
+            let t = tests[i]
             p.completedUnitCount = Int64(t.0)
             p.totalUnitCount = Int64(t.1)
             XCTAssertEqual(t.2, p.isIndeterminate, "failed with \(t)")
