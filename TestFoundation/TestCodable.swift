@@ -359,7 +359,8 @@ class TestCodable : XCTestCase {
     }()
 
     func test_Calendar_JSON() {
-        for calendar in calendarValues {
+        for i in 0..<calendarValues.count {
+            let calendar = calendarValues[i]
             expectRoundTripEqualityThroughJSON(for: calendar)
         }
     }
