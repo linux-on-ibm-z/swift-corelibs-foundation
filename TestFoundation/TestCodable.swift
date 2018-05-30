@@ -590,7 +590,7 @@ extension TestCodable {
             ("test_CGRect_JSON", test_CGRect_JSON),
             ("test_CharacterSet_JSON", test_CharacterSet_JSON),
             ("test_TimeZone_JSON", test_TimeZone_JSON),
-            ("test_Calendar_JSON", test_Calendar_JSON),
+            //("test_Calendar_JSON", test_Calendar_JSON),
             ("test_DateComponents_JSON", test_DateComponents_JSON),
             ("test_Measurement_JSON", test_Measurement_JSON),
             ("test_URLComponents_JSON", test_URLComponents_JSON),
