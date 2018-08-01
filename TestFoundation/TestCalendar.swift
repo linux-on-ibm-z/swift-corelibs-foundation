@@ -198,7 +198,7 @@ class TestNSDateComponents: XCTestCase {
 
     static var allTests: [(String, (TestNSDateComponents) -> () throws -> Void)] {
         return [
-            ("test_copyNSDateComponents", test_copyNSDateComponents),
+            //("test_copyNSDateComponents", test_copyNSDateComponents),
         ]
     }
 
