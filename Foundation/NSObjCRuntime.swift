@@ -215,6 +215,15 @@ internal func NSInvalidArgument(_ message: String, method: String = #function, f
 
 internal struct _CFInfo {
     // This must match _CFRuntimeBase
+#if arch(s390x)
+    var info: UInt64
+    init(typeID: CFTypeID) {
+        info = UInt64((UInt64(typeID) << 8) | (UInt64(0x80)))
+    }
+    init(typeID: CFTypeID, extra: UInt32) {
+        info = UInt64((UInt64(typeID) << 8) | (UInt64(0x80)))
+    }
+#else
     var info: UInt32
     var pad : UInt32
     init(typeID: CFTypeID) {
@@ -226,6 +235,7 @@ internal struct _CFInfo {
         info = UInt32((UInt32(typeID) << 8) | (UInt32(0x80)))
         pad = extra
     }
+#endif
 }
 
 #if os(macOS) || os(iOS)
