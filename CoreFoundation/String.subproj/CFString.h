@@ -172,17 +172,10 @@ struct __CFConstStr {
 #define CONST_STRING_LITERAL_SECTION
 #endif
 
-#if __BIG_ENDIAN__
-#define CFSTR(cStr)  ({ \
-    static struct __CFConstStr str CONST_STRING_LITERAL_SECTION = {{(uintptr_t)&__CFConstantStringClassReference, _CF_CONSTANT_OBJECT_STRONG_RC, 0x00000000C8070000}, (uint8_t *)(cStr), sizeof(cStr) - 1}; \
-    (CFStringRef)&str; \
-})
-#else
 #define CFSTR(cStr)  ({ \
     static struct __CFConstStr str CONST_STRING_LITERAL_SECTION = {{(uintptr_t)&__CFConstantStringClassReference, _CF_CONSTANT_OBJECT_STRONG_RC, 0x07C8}, (uint8_t *)(cStr), sizeof(cStr) - 1}; \
     (CFStringRef)&str; \
 })
-#endif
 
 #else
 

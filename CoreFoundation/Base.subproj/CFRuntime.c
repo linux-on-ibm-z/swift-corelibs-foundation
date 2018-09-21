@@ -388,12 +388,15 @@ CFTypeRef _CFRuntimeCreateInstance(CFAllocatorRef allocator, CFTypeID typeID, CF
     
     // Zero the rest of the memory, starting at cfinfo
     memset(&memory->_cfinfoa, 0, size - (sizeof(memory->_cfisa) + sizeof(memory->_swift_rc)));
-    
+
     // Set up the cfinfo struct
-    uint32_t *cfinfop = (uint32_t *)&(memory->_cfinfoa);
-    // The 0x80 means we use the default allocator
-    *cfinfop = (uint32_t)(((uint32_t)typeID << 8) | (0x80));
-    
+    uint32_t cfinfo = ((uint32_t)(typeID) << 8) | 0x80; // 0x80 means we use the default allocator
+#if __LP64__
+    *(uint64_t *)&(memory->_cfinfoa) = (uint64_t)cfinfo;
+#else
+    *(uint32_t *)&(memory->_cfinfoa) = cfinfo;
+#endif
+
     return memory;
 #else
     if (__CFRuntimeClassTableSize <= typeID) HALT;
