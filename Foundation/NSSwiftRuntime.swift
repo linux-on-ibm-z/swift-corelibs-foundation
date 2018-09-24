@@ -87,11 +87,7 @@ extension ObjCBool : CustomStringConvertible {
 #endif
 
 internal class __NSCFType : NSObject {
-#if arch(s390x)
-    private var _cfinfo : Int64
-#else
     private var _cfinfo : Int32
-#endif
     
     override init() {
         // This is not actually called; _CFRuntimeCreateInstance will initialize _cfinfo

@@ -388,16 +388,11 @@ CFTypeRef _CFRuntimeCreateInstance(CFAllocatorRef allocator, CFTypeID typeID, CF
     
     // Zero the rest of the memory, starting at cfinfo
     memset(&memory->_cfinfoa, 0, size - (sizeof(memory->_cfisa) + sizeof(memory->_swift_rc)));
-
-#if defined(__linux__) && defined(__s390x__)
-    uint64_t *cfinfop = (uint64_t *)&(memory->_cfinfoa);
-    *cfinfop = (uint64_t)(((uint64_t)typeID << 8ULL) | (0x80ULL));
-#else
+    
     // Set up the cfinfo struct
     uint32_t *cfinfop = (uint32_t *)&(memory->_cfinfoa);
     // The 0x80 means we use the default allocator
     *cfinfop = (uint32_t)(((uint32_t)typeID << 8) | (0x80));
-#endif
     
     return memory;
 #else
