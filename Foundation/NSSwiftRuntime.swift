@@ -88,8 +88,14 @@ extension ObjCBool : CustomStringConvertible {
 
 @usableFromInline
 internal class __NSCFType : NSObject {
+#if arch(x86_64) || arch(arm64) || arch(s390x) || arch(powerpc64) || arch(powerpc64le)
+    private var _cfinfo : Int64
+#elseif arch(arm) || arch(i386)
     private var _cfinfo : Int32
-    
+#else
+#error("unknown architecture")
+#endif
+
     override init() {
         // This is not actually called; _CFRuntimeCreateInstance will initialize _cfinfo
         _cfinfo = 0

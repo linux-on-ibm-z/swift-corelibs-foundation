@@ -92,14 +92,19 @@ open class DateFormatter : Formatter {
     internal func _setFormatterAttributes(_ formatter: CFDateFormatter) {
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterIsLenient, value: isLenient._cfObject)
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterTimeZone, value: _timeZone?._cfObject)
-        if let ident = _calendar?.identifier {
+    if (_isCalendarSet && _calendar.identifier != nil) {
+            let ident = _calendar.identifier
             _setFormatterAttribute(formatter, attributeName: kCFDateFormatterCalendarName, value: Calendar._toNSCalendarIdentifier(ident).rawValue._cfObject)
         } else {
             _setFormatterAttribute(formatter, attributeName: kCFDateFormatterCalendarName, value: nil)
         }
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterTwoDigitStartDate, value: _twoDigitStartDate?._cfObject)
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterDefaultDate, value: defaultDate?._cfObject)
+    if (_isCalendarSet) {
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterCalendar, value: _calendar?._cfObject)
+        } else {
+        _setFormatterAttribute(formatter, attributeName: kCFDateFormatterCalendar, value: nil)
+        }
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterEraSymbols, value: _eraSymbols?._cfObject)
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterMonthSymbols, value: _monthSymbols?._cfObject)
         _setFormatterAttribute(formatter, attributeName: kCFDateFormatterShortMonthSymbols, value: _shortMonthSymbols?._cfObject)
@@ -186,7 +191,16 @@ open class DateFormatter : Formatter {
         }
     }
 
-    /*@NSCopying*/ internal var _calendar: Calendar! { willSet { _reset() } }
+    var _isCalendarSet: Bool = false
+        /*@NSCopying*/ internal var _calendar: Calendar! {
+          willSet {
+            _reset()
+          }
+          didSet {
+            _isCalendarSet = true
+          }
+      }
+
     open var calendar: Calendar! {
         get {
             guard let calendar = _calendar else {
